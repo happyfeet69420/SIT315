@@ -16,7 +16,7 @@ void loop()
   
   float tempature = (volt - 0.5) * 100; 
   Serial.print(tempature);
-  Serial.println(" degrees C");
+  Serial.println(" degrees ");
   
   if (tempature > 30)
   {
