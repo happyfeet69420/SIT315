@@ -1,0 +1,23 @@
+const uint8_t led_pin = 13;
+const uint8_t interrupt_pin = 2;
+uint8_t ledState = LOW;
+
+void setup()
+{
+  pinMode(interrupt_pin, INPUT);
+  pinMode(led_pin, OUTPUT);
+  Serial.begin(9600);
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin), interrupt, RISING);
+}
+
+void loop()
+{
+  delay(500);
+  Serial.println(ledState);
+}
+
+void interrupt()
+{
+  ledState = !ledState;
+  digitalWrite(led_pin, ledState);
+}
