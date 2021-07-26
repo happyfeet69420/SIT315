@@ -1,13 +1,13 @@
 const uint8_t led_pin = 13;
 const uint8_t interrupt_pin = 2;
-uint8_t ledState = LOW;
+volatile uint8_t ledState = LOW;
 
 void setup()
 {
   pinMode(interrupt_pin, INPUT);
   pinMode(led_pin, OUTPUT);
   Serial.begin(9600);
-  attachInterrupt(digitalPinToInterrupt(interrupt_pin), interrupt, RISING);
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin), interrupt, CHANGE);
 }
 
 void loop()
