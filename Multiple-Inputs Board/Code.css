@@ -1,0 +1,42 @@
+const uint8_t led_pin = 13;
+const uint8_t led_pin1 = 10;
+
+//External Interrupt
+const uint8_t interrupt_pin = 2;
+const uint8_t interrupt_pin1 = 3;
+
+volatile uint8_t ledState = LOW; 
+volatile uint8_t ledState1 = LOW;
+
+void setup()
+{
+  pinMode(interrupt_pin, INPUT);
+  pinMode(led_pin, OUTPUT);
+  pinMode(interrupt_pin1, INPUT);
+  pinMode(led_pin1, OUTPUT);
+  
+  Serial.begin(9600);
+  
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin), interrupt, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(interrupt_pin1), interrupt1, CHANGE);
+}
+
+void loop()
+{
+  delay(500);
+  Serial.print(ledState);
+  Serial.print("\t");
+  Serial.println(ledState1);
+}
+
+void interrupt()
+{
+  ledState = !ledState;
+  digitalWrite(led_pin, ledState);
+}
+
+void interrupt1()
+{
+  ledState1 = !ledState1;
+  digitalWrite(led_pin1, ledState1);
+}
