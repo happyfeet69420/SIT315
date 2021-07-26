@@ -8,6 +8,10 @@ const uint8_t interrupt_pin1 = 3;
 volatile uint8_t ledState = LOW; 
 volatile uint8_t ledState1 = LOW;
 
+//Let say I wanted to add another sensor but there is only 2 interrupt pins available. 
+//I would need to check the PCINT pins that corresponds to the Pin Change Mask Register 1.
+//For example, I wanted pin 4 and 5 to be interrupt, I need to enable PCMSK2.
+
 void setup()
 {
   pinMode(interrupt_pin, INPUT);
